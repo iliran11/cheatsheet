@@ -121,6 +121,7 @@
           <li><a href="#views">Views 🖼️</a></li>
           <li><a href="#loops">ForEach 🔁</a></li>
           <li><a href="#scrollview">ScrollView 📜</a></li>
+          <li><a href="#lazygrid">LazyGrid 🧩</a></li>
         </ul>
       </li>
     </ul>
@@ -268,6 +269,35 @@ p.title = <span class="str">"Sunset"</span></pre>
       <p>Pass an <b>Axis.Set</b> to scroll sideways. Hide the bar with <b>showsIndicators</b>.</p>
       <pre><span class="kw">ScrollView</span>(.horizontal, showsIndicators: <span class="kw">false</span>) {
     <span class="ty">HStack</span> {
+        <span class="kw">ForEach</span>(photos) { <span class="ty">PhotoThumb</span>(photo: $0) }
+    }
+}</pre>
+    </div>
+  </div>
+
+  <h2 id="lazygrid" style="margin-top:20px"><a href="https://developer.apple.com/documentation/swiftui/lazyvgrid" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">LazyGrid 🧩</a></h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3><span class="tag sun2">LazyVGrid</span> vertical grid</h3>
+      <p>Lays out columns via <b>GridItem</b>, grows <b>downward</b>. Rows are built <b>lazily</b> as they appear.</p>
+      <pre><span class="kw">let</span> columns = [
+    <span class="ty">GridItem</span>(.flexible()),
+    <span class="ty">GridItem</span>(.flexible())
+]
+<span class="ty">ScrollView</span> {
+    <span class="ty">LazyVGrid</span>(columns: columns) {
+        <span class="kw">ForEach</span>(photos) { <span class="ty">PhotoThumb</span>(photo: $0) }
+    }
+}</pre>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag sky2">LazyHGrid</span> horizontal grid</h3>
+      <p>Same idea, rotated — uses <b>rows</b> and grows <b>sideways</b>.</p>
+      <pre><span class="kw">let</span> rows = [<span class="ty">GridItem</span>(.flexible()), <span class="ty">GridItem</span>(.flexible())]
+<span class="ty">ScrollView</span>(.horizontal) {
+    <span class="ty">LazyHGrid</span>(rows: rows) {
         <span class="kw">ForEach</span>(photos) { <span class="ty">PhotoThumb</span>(photo: $0) }
     }
 }</pre>
