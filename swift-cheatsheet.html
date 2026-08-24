@@ -122,6 +122,7 @@
           <li><a href="#loops">ForEach 🔁</a></li>
           <li><a href="#scrollview">ScrollView 📜</a></li>
           <li><a href="#lazygrid">LazyGrid 🧩</a></li>
+          <li><a href="#image">Image 🌄</a></li>
         </ul>
       </li>
     </ul>
@@ -301,6 +302,50 @@ p.title = <span class="str">"Sunset"</span></pre>
         <span class="kw">ForEach</span>(photos) { <span class="ty">PhotoThumb</span>(photo: $0) }
     }
 }</pre>
+    </div>
+  </div>
+
+  <h2 id="image" style="margin-top:20px"><a href="https://developer.apple.com/documentation/swiftui/image" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">Image 🌄</a></h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3><span class="tag sun2">Image</span> from an asset</h3>
+      <p>Loads a bitmap or vector image from the <b>asset catalog</b> by name.</p>
+      <pre><span class="ty">Image</span>(<span class="str">"avatar"</span>)</pre>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag sky2">.resizable()</span> allow resizing</h3>
+      <p>Without it, an image renders at its <b>native size</b> and ignores frame modifiers.</p>
+      <pre><span class="ty">Image</span>(<span class="str">"avatar"</span>)
+    .resizable()</pre>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag sun2">.frame()</span> set the size</h3>
+      <p>Sets the <b>width/height</b> the image is laid out into — a <b>resizable</b> image scales to fit it.</p>
+      <pre><span class="ty">Image</span>(<span class="str">"avatar"</span>)
+    .resizable()
+    .frame(width: 80, height: 80)</pre>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag sky2">.scaledToFill()</span> fill the frame</h3>
+      <p>Scales <b>proportionally</b> to fill the frame — may <b>overflow</b> its bounds.</p>
+      <pre><span class="ty">Image</span>(<span class="str">"avatar"</span>)
+    .resizable()
+    .scaledToFill()
+    .frame(width: 80, height: 80)</pre>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag sun2">.clipped()</span> crop the overflow</h3>
+      <p>Cuts off content that extends <b>past the frame's bounds</b>.</p>
+      <pre><span class="ty">Image</span>(<span class="str">"avatar"</span>)
+    .resizable()
+    .scaledToFill()
+    .frame(width: 80, height: 80)
+    .clipped()</pre>
     </div>
   </div>
 </div>
