@@ -12,14 +12,19 @@ https://developer.apple.com/documentation/swiftui/app-organization
 # Structure
 
 ## Table of contents
-Flat, only the H1 titles
+Shows H1 and H2 titles.
 
 ## Sections
-The document will consist of many sections. Each section dedicated to one concept. The overall structure is h1 and list of cards for every section.
+The document will consist of many sections. Each section dedicated to a domain (e.g. Swift language, SwiftUI).
 
 ### H1 title
+* One per domain (e.g. Swift language, SwiftUI).
+
+### H2 title
+* One per concept within the domain.
 * with href for the approriate page discussing the topic in the [canonical website](#canonical-website).
 * every href must open in a new tab
+
 ### Cards
-Each card will have a H2 title and a short snippet. 
+Each card will have a H3 title and a short snippet. 
 The snippet will not contain comments. the code shold be self explanatory.
