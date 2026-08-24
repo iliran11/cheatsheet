@@ -114,6 +114,7 @@
         <ul>
           <li><a href="#unwrapping-optionals">Optional Binding 🎁</a></li>
           <li><a href="#structs">Structures 🧱</a></li>
+          <li><a href="#arrays">Arrays 📦</a></li>
         </ul>
       </li>
       <li><a href="#swiftui">SwiftUI 🎨</a>
@@ -205,6 +206,39 @@ p.title = <span class="str">"Sunset"</span></pre>
       <h3><span class="tag priv">private</span> keep it inside</h3>
       <p>Visible <b>only inside the struct</b>.</p>
       <pre><span class="kw">private func</span> validate() -&gt; <span class="ty">Bool</span> { !photo.name.isEmpty }</pre>
+    </div>
+  </div>
+
+  <h2 id="arrays" style="margin-top:20px"><a href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/collectiontypes/#Arrays" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">Arrays 📦</a></h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3><span class="tag sun2">[ ]</span> array literal</h3>
+      <p>Ordered, <b>zero-indexed</b> collection — type is inferred from its elements.</p>
+      <pre><span class="kw">let</span> names = [<span class="str">"Ann"</span>, <span class="str">"Bo"</span>, <span class="str">"Cy"</span>]
+<span class="kw">var</span> scores: [<span class="ty">Int</span>] = []</pre>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag sky2">repeating:count:</span> preallocate</h3>
+      <p>Builds an array of <b>n copies</b> of a value — handy for fixed-size buffers or grids.</p>
+      <pre><span class="kw">var</span> grid = <span class="ty">Array</span>(repeating: 0, count: 4)</pre>
+      <p>→ <code>[0, 0, 0, 0]</code></p>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag sky2">repeating:count:</span> with strings</h3>
+      <p>The repeated value can be <b>any type</b> — here, a placeholder string.</p>
+      <pre><span class="kw">var</span> tags = <span class="ty">Array</span>(repeating: <span class="str">"empty"</span>, count: 3)</pre>
+      <p>→ <code>["empty", "empty", "empty"]</code></p>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag sky2">nested repeating</span> 2D grid</h3>
+      <p>The <b>inner</b> array (3 <b>false</b>s) is one row — <b>[Bool]</b> is shorthand for <b>Array&lt;Bool&gt;</b>, so this init is the same as <b>Array(repeating: false, count: 3)</b>. <b>repeating</b> that row <b>3 times</b> builds a 3×3 grid.</p>
+      <pre><span class="kw">let</span> row = [<span class="ty">Bool</span>](repeating: <span class="kw">false</span>, count: 3)
+<span class="kw">var</span> board = <span class="ty">Array</span>(repeating: row, count: 3)</pre>
+      <p>→ <code>[[false, false, false],<br>&nbsp;&nbsp;[false, false, false],<br>&nbsp;&nbsp;[false, false, false]]</code></p>
     </div>
   </div>
 
