@@ -7,7 +7,8 @@ The cheatsheet is a plain [HTML](./swift-cheatsheet.html)
 * You will use only this website for providing links to me, or in the HTML
 
 ## SwiftUI
-https://developer.apple.com/documentation/swiftui/app-organization
+* [This is the canonical website for information](https://developer.apple.com/documentation/swiftui/app-organization).
+* You may use topic-specific pages under `developer.apple.com/documentation/swiftui/` (e.g. `foreach`) when a more precise page exists for the concept.
 
 # Structure
 

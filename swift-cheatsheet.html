@@ -118,7 +118,8 @@
       </li>
       <li><a href="#swiftui">SwiftUI 🎨</a>
         <ul>
-          <li><a href="#views-and-loops">Views &amp; Loops 🖼️</a></li>
+          <li><a href="#views">Views 🖼️</a></li>
+          <li><a href="#loops">ForEach 🔁</a></li>
         </ul>
       </li>
     </ul>
@@ -206,7 +207,7 @@ p.title = <span class="str">"Sunset"</span></pre>
 
   <h1 id="swiftui" style="margin-top:20px">SwiftUI 🎨</h1>
 
-  <h2 id="views-and-loops"><a href="https://developer.apple.com/documentation/swiftui/app-organization" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">Views &amp; Loops 🖼️</a></h2>
+  <h2 id="views"><a href="https://developer.apple.com/documentation/swiftui/app-organization" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">Views 🖼️</a></h2>
 
   <div class="grid">
     <div class="card">
@@ -220,13 +221,28 @@ p.title = <span class="str">"Sunset"</span></pre>
 }
 <span class="ty">HelloView</span>(name: <span class="str">"Maya"</span>)</pre>
     </div>
+  </div>
+
+  <h2 id="loops"><a href="https://developer.apple.com/documentation/swiftui/foreach" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">ForEach 🔁</a></h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3><span class="tag sun2">ForEach</span> with Identifiable</h3>
+      <p>Conform to <b>Identifiable</b> and <b>ForEach</b> can find the id on its own — the safe way to iterate.</p>
+      <pre><span class="kw">struct</span> <span class="ty">Placement</span>: <span class="ty">Identifiable</span> {
+    <span class="kw">let</span> id: <span class="ty">UUID</span>
+    <span class="kw">let</span> photo: <span class="ty">ModelPhoto</span>
+}
+<span class="kw">ForEach</span>(placements) { p <span class="kw">in</span>
+    <span class="ty">PhotoView</span>(placement: p)
+}</pre>
+    </div>
 
     <div class="card">
-      <h3><span class="tag sun2">ForEach</span> loop in a view</h3>
-      <p>Creates a view <b>per element</b>. Items need a stable <b>id</b>.</p>
-      <pre><span class="kw">ForEach</span>(placements) { p <span class="kw">in</span>
-    <span class="ty">PhotoView</span>(placement: p)
-}
+      <h3><span class="tag sky2">ForEach</span> without Identifiable</h3>
+      <p>No <b>Identifiable</b> conformance — fall back to <b>id: \.self</b>. Only safe when elements are unique.</p>
+      <pre><span class="kw">let</span> names: [<span class="ty">String</span>] = [<span class="str">"Maya"</span>, <span class="str">"Ori"</span>, <span class="str">"Tal"</span>]
+
 <span class="kw">ForEach</span>(names, id: \.<span class="kw">self</span>) { <span class="ty">Text</span>($0) }</pre>
     </div>
   </div>
