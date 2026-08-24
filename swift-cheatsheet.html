@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Swift Cheatsheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@600;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFF8EE;
+    --ink:#3A2E39;
+    --orange:#F05138;
+    --sun:#FFC53D;
+    --sky:#5AB8F5;
+    --mint:#4FD1A5;
+    --grape:#B08BEB;
+    --card:#FFFFFF;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--paper);
+    background-image:radial-gradient(#F7E4C6 1.2px, transparent 1.2px);
+    background-size:22px 22px;
+    color:var(--ink);
+    font-family:'Nunito',sans-serif;
+    padding:16px 14px 28px;
+  }
+  .wrap{max-width:860px;margin:0 auto}
+  h1{
+    font-family:'Baloo 2',cursive;
+    font-size:1.6rem;
+    margin:0 0 12px;
+    color:var(--orange);
+  }
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:620px){.grid{grid-template-columns:1fr}}
+  .card{
+    background:var(--card);
+    border:2.5px solid var(--ink);
+    border-radius:16px;
+    padding:10px 14px;
+    box-shadow:4px 4px 0 rgba(58,46,57,.15);
+  }
+  .card h2{
+    font-family:'Baloo 2',cursive;
+    font-size:.95rem;
+    margin:0 0 4px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:.75rem;font-weight:700;
+    padding:1px 9px;border-radius:999px;
+    border:2px solid var(--ink);
+  }
+  .tag.let{background:var(--sun)}
+  .tag.var{background:var(--sky)}
+  .tag.priv{background:var(--grape)}
+  .tag.init{background:var(--mint)}
+  .tag.sun2{background:var(--orange);color:#fff}
+  .tag.sky2{background:var(--sky)}
+  p{margin:3px 0;line-height:1.4;font-size:.8rem}
+  pre{
+    background:#2E2433;
+    color:#FDF6EC;
+    border-radius:10px;
+    padding:8px 10px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:.7rem;
+    line-height:1.5;
+    overflow-x:auto;
+    margin:6px 0 2px;
+  }
+  .kw{color:#FF8A73;font-weight:700}
+  .ty{color:#8FD6FF}
+  .str{color:#FFD97A}
+  .cm{color:#9d8fa8;font-style:italic}
+  b{color:var(--orange)}
+  .toc{
+    background:var(--card);
+    border:2.5px solid var(--ink);
+    border-radius:16px;
+    padding:10px 16px;
+    margin:0 0 20px;
+    box-shadow:4px 4px 0 rgba(58,46,57,.15);
+  }
+  .toc h2{
+    font-family:'Baloo 2',cursive;
+    font-size:1rem;margin:0 0 8px;
+  }
+  .toc ul{margin:0;padding-left:20px}
+  .toc li{margin:4px 0;font-size:.85rem}
+  .toc a{color:var(--ink);text-decoration:none;font-weight:700}
+  .toc a:hover{color:var(--orange);text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 style="font-size:2rem">Swift Cheatsheet 🐦</h1>
+
+  <nav class="toc">
+    <h2>Table of Contents</h2>
+    <ul>
+      <li><a href="#unwrapping-optionals">Unwrapping Optionals 🎁</a></li>
+      <li><a href="#structs">Structs 🧱</a></li>
+      <li><a href="#swiftui">SwiftUI 🎨</a></li>
+    </ul>
+  </nav>
+
+  <h1 id="unwrapping-optionals">Unwrapping Optionals 🎁</h1>
+
+  <div class="grid">
+    <div class="card">
+      <h2><span class="tag sky2">if let</span> unwrap in a scope</h2>
+      <p>Runs the block <b>only if not nil</b>. Unwrapped value lives inside the braces.</p>
+      <pre><span class="kw">if let</span> photo = optionalPhoto {
+    show(photo)              <span class="cm">// non-optional here</span>
+}
+<span class="kw">if let</span> photo {  <span class="cm">// shorthand, same name</span>
+    show(photo)
+}</pre>
+    </div>
+
+    <div class="card">
+      <h2><span class="tag sky2">guard let</span> early exit</h2>
+      <p>Exits if nil (<b>return / throw</b>). Value stays available <b>after</b> the guard.</p>
+      <pre><span class="kw">guard let</span> photo = optionalPhoto <span class="kw">else</span> {
+    <span class="kw">return</span>
+}
+show(photo)  <span class="cm">// usable for rest of function</span></pre>
+    </div>
+
+    <div class="card">
+      <h2><span class="tag sky2">?? and ?</span> quick tools</h2>
+      <p><b>??</b> default if nil · <b>?.</b> optional chaining · <b>!</b> force (crashes if nil)</p>
+      <pre>name = optionalName ?? <span class="str">"Anonymous"</span>
+count = optionalPhoto?.tags.count   <span class="cm">// Optional Int</span>
+photo = optionalPhoto!              <span class="cm">// ⚠️ avoid</span></pre>
+    </div>
+  </div>
+
+  <h1 id="structs" style="margin-top:20px">Structs 🧱</h1>
+
+  <div class="grid">
+    <div class="card">
+      <h2><span class="tag init">init</span> creating an instance</h2>
+      <p>Free <b>memberwise initializer</b> — one parameter per stored property:</p>
+      <pre><span class="kw">let</span> p = <span class="ty">ModelPhotoPlacement</span>(photo: myPhoto, slot: mySlot)</pre>
+    </div>
+    <div class="card">
+      <h2><span class="tag init">init(_)</span> no label</h2>
+      <p>Use <b>_</b> in a custom init to drop the label:</p>
+      <pre><span class="kw">struct</span> <span class="ty">StructExample</span> {
+    <span class="kw">let</span> assets: [<span class="ty">Asset</span>]
+    <span class="kw">init</span>(_ assets: [<span class="ty">Asset</span>]) { <span class="kw">self</span>.assets = assets }
+}
+<span class="kw">let</span> ex = <span class="ty">StructExample</span>(myAssets)  <span class="cm">// no label 🎉</span></pre>
+    </div>
+    <div class="card">
+      <h2><span class="tag let">let</span> stored constant</h2>
+      <p><b>Must be initialized</b> — at declaration or via init. Can't change after.</p>
+      <pre><span class="kw">let</span> photo: <span class="ty">ModelPhoto</span>    <span class="cm">// set once via init</span>
+<span class="kw">let</span> internalID = <span class="ty">UUID</span>()  <span class="cm">// default value</span></pre>
+    </div>
+    <div class="card">
+      <h2><span class="tag var">var { }</span> computed property</h2>
+      <p>No stored value — <b>recalculated on every access</b>.</p>
+      <pre><span class="kw">var</span> displayName: <span class="ty">String</span> {
+    <span class="str">"\(photo.name) @ \(slot.id)"</span>
+}</pre>
+    </div>
+    <div class="card">
+      <h2><span class="tag var">get set</span> setter</h2>
+      <p>Computed property with a <b>setter</b> — <b>newValue</b> is the incoming value.</p>
+      <pre><span class="kw">var</span> title: <span class="ty">String</span> {
+    <span class="kw">get</span> { photo.name }
+    <span class="kw">set</span> { photo.name = newValue }
+}
+p.title = <span class="str">"Sunset"</span>  <span class="cm">// calls set</span></pre>
+    </div>
+    <div class="card">
+      <h2><span class="tag priv">private</span> keep it inside</h2>
+      <p>Visible <b>only inside the struct</b>.</p>
+      <pre><span class="kw">private func</span> validate() -&gt; <span class="ty">Bool</span> { !photo.name.isEmpty }</pre>
+    </div>
+  </div>
+
+  <h1 id="swiftui" style="margin-top:20px">SwiftUI 🎨 <small style="color:#8a7a72;font-family:Nunito;font-size:.75rem">views</small></h1>
+
+  <div class="grid">
+    <div class="card">
+      <h2><span class="tag sun2">View</span> the basic view</h2>
+      <p>A struct conforming to <b>View</b> — <b>body</b> is a computed property. Params = stored properties.</p>
+      <pre><span class="kw">struct</span> <span class="ty">HelloView</span>: <span class="ty">View</span> {
+    <span class="kw">let</span> name: <span class="ty">String</span>          <span class="cm">// param</span>
+    <span class="kw">var</span> body: <span class="kw">some</span> <span class="ty">View</span> {
+        <span class="ty">Text</span>(<span class="str">"Hello, \(name)!"</span>)
+    }
+}
+<span class="ty">HelloView</span>(name: <span class="str">"Maya"</span>)      <span class="cm">// usage</span></pre>
+    </div>
+
+    <div class="card">
+      <h2><span class="tag sun2">ForEach</span> loop in a view</h2>
+      <p>Creates a view <b>per element</b>. Items need a stable <b>id</b>.</p>
+      <pre><span class="kw">ForEach</span>(placements) { p <span class="kw">in</span>   <span class="cm">// if Identifiable</span>
+    <span class="ty">PhotoView</span>(placement: p)
+}
+<span class="kw">ForEach</span>(names, id: \.<span class="kw">self</span>) { <span class="ty">Text</span>($0) }</pre>
+    </div>
+  </div>
+</div>
+</body>
+</html>
