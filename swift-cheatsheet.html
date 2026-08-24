@@ -120,6 +120,7 @@
         <ul>
           <li><a href="#views">Views 🖼️</a></li>
           <li><a href="#loops">ForEach 🔁</a></li>
+          <li><a href="#scrollview">ScrollView 📜</a></li>
         </ul>
       </li>
     </ul>
@@ -244,6 +245,32 @@ p.title = <span class="str">"Sunset"</span></pre>
       <pre><span class="kw">let</span> names: [<span class="ty">String</span>] = [<span class="str">"Maya"</span>, <span class="str">"Ori"</span>, <span class="str">"Tal"</span>]
 
 <span class="kw">ForEach</span>(names, id: \.<span class="kw">self</span>) { <span class="ty">Text</span>($0) }</pre>
+    </div>
+  </div>
+
+  <h2 id="scrollview" style="margin-top:20px"><a href="https://developer.apple.com/documentation/swiftui/scrollview" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">ScrollView 📜</a></h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3><span class="tag sun2">ScrollView</span> vertical by default</h3>
+      <p>Wraps content that's <b>taller than the screen</b> in a scrollable container.</p>
+      <pre><span class="kw">ScrollView</span> {
+    <span class="ty">VStack</span> {
+        <span class="kw">ForEach</span>(items) { item <span class="kw">in</span>
+            <span class="ty">RowView</span>(item: item)
+        }
+    }
+}</pre>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag sky2">.horizontal</span> axis</h3>
+      <p>Pass an <b>Axis.Set</b> to scroll sideways. Hide the bar with <b>showsIndicators</b>.</p>
+      <pre><span class="kw">ScrollView</span>(.horizontal, showsIndicators: <span class="kw">false</span>) {
+    <span class="ty">HStack</span> {
+        <span class="kw">ForEach</span>(photos) { <span class="ty">PhotoThumb</span>(photo: $0) }
+    }
+}</pre>
     </div>
   </div>
 </div>
