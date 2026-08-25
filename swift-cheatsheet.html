@@ -115,6 +115,7 @@
           <li><a href="#unwrapping-optionals">Optional Binding 🎁</a></li>
           <li><a href="#structs">Structures 🧱</a></li>
           <li><a href="#arrays">Arrays 📦</a></li>
+          <li><a href="#asyncstream">AsyncStream 🌊</a></li>
         </ul>
       </li>
       <li><a href="#swiftui">SwiftUI 🎨</a>
@@ -239,6 +240,44 @@ p.title = <span class="str">"Sunset"</span></pre>
       <pre><span class="kw">let</span> row = [<span class="ty">Bool</span>](repeating: <span class="kw">false</span>, count: 3)
 <span class="kw">var</span> board = <span class="ty">Array</span>(repeating: row, count: 3)</pre>
       <p>→ <code>[[false, false, false],<br>&nbsp;&nbsp;[false, false, false],<br>&nbsp;&nbsp;[false, false, false]]</code></p>
+    </div>
+  </div>
+
+  <h2 id="asyncstream" style="margin-top:20px"><a href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/#Asynchronous-Sequences" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">AsyncStream 🌊</a></h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3><span class="tag init">AsyncStream</span> build a stream</h3>
+      <p>Wraps a <b>callback-based API</b> as an async sequence. Call <b>yield</b> for each value, <b>finish</b> when done.</p>
+      <pre><span class="kw">let</span> stream = <span class="ty">AsyncStream</span>&lt;<span class="ty">Int</span>&gt; { continuation <span class="kw">in</span>
+    continuation.yield(1)
+    continuation.yield(2)
+    continuation.finish()
+}</pre>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag sky2">for await</span> consume a stream</h3>
+      <p>Iterates values <b>as they arrive</b>, suspending between each one.</p>
+      <pre><span class="kw">for await</span> value <span class="kw">in</span> stream {
+    print(value)
+}</pre>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag var">onTermination</span> cleanup</h3>
+      <p>Runs when the consumer <b>stops iterating</b> or the stream <b>finishes</b> — cancel underlying work here.</p>
+      <pre>continuation.onTermination = { _ <span class="kw">in</span>
+    stopListening()
+}</pre>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag priv">bufferingPolicy</span> back-pressure</h3>
+      <p>Caps how many <b>unconsumed</b> values are buffered when the consumer runs slower than the producer.</p>
+      <pre><span class="kw">let</span> stream = <span class="ty">AsyncStream</span>&lt;<span class="ty">Int</span>&gt;(bufferingPolicy: .bufferingNewest(1)) { continuation <span class="kw">in</span>
+    continuation.yield(1)
+}</pre>
     </div>
   </div>
 
