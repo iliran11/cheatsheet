@@ -116,6 +116,7 @@
           <li><a href="#structs">Structures 🧱</a></li>
           <li><a href="#arrays">Arrays 📦</a></li>
           <li><a href="#asyncstream">AsyncStream 🌊</a></li>
+          <li><a href="#protocols">Identifiable, Hashable, Equatable 🪪</a></li>
         </ul>
       </li>
       <li><a href="#swiftui">SwiftUI 🎨</a>
@@ -278,6 +279,38 @@ p.title = <span class="str">"Sunset"</span></pre>
       <pre><span class="kw">let</span> stream = <span class="ty">AsyncStream</span>&lt;<span class="ty">Int</span>&gt;(bufferingPolicy: .bufferingNewest(1)) { continuation <span class="kw">in</span>
     continuation.yield(1)
 }</pre>
+    </div>
+  </div>
+
+  <h2 id="protocols" style="margin-top:20px"><a href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/protocols/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">Identifiable, Hashable, Equatable 🪪</a></h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3><span class="tag sky2">Identifiable</span> stable identity</h3>
+      <p>Requires an <b>id</b> property. Lets SwiftUI track items across a collection, e.g. in <b>ForEach</b>.</p>
+      <pre><span class="kw">struct</span> <span class="ty">Photo</span>: <span class="ty">Identifiable</span> {
+    <span class="kw">let</span> id = <span class="ty">UUID</span>()
+    <span class="kw">let</span> name: <span class="ty">String</span>
+}</pre>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag sky2">Equatable</span> == comparison</h3>
+      <p>Requires <b>==</b>. Synthesized <b>automatically</b> if all stored properties are Equatable.</p>
+      <pre><span class="kw">struct</span> <span class="ty">Photo</span>: <span class="ty">Equatable</span> {
+    <span class="kw">let</span> id: <span class="ty">UUID</span>
+    <span class="kw">let</span> name: <span class="ty">String</span>
+}
+photoA == photoB</pre>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag sky2">Hashable</span> use in Set / Dictionary key</h3>
+      <p>Extends <b>Equatable</b> with a <b>hash(into:)</b>. Also synthesized automatically for simple types.</p>
+      <pre><span class="kw">struct</span> <span class="ty">Photo</span>: <span class="ty">Hashable</span> {
+    <span class="kw">let</span> id: <span class="ty">UUID</span>
+}
+<span class="kw">let</span> seen: <span class="ty">Set</span>&lt;<span class="ty">Photo</span>&gt; = [photoA, photoB]</pre>
     </div>
   </div>
 
