@@ -114,8 +114,9 @@
         <ul>
           <li><a href="#data-structures">Data Structures 🗂️</a></li>
           <li><a href="#unwrapping-optionals">Optional Binding 🎁</a></li>
-          <li><a href="#structs">Structures 🧱</a></li>
+          <li><a href="#structs">Structs 🧱</a></li>
           <li><a href="#enums">Enums 🎛️</a></li>
+          <li><a href="#classes">Classes 🏛️</a></li>
           <li><a href="#arrays">Arrays 📦</a></li>
           <li><a href="#asyncstream">AsyncStream 🌊</a></li>
           <li><a href="#protocols">Identifiable, Hashable, Equatable 🪪</a></li>
@@ -191,7 +192,7 @@ photo = optionalPhoto!</pre>
     </div>
   </div>
 
-  <h2 id="structs" style="margin-top:20px"><a href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/classesandstructures/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">Structures 🧱</a></h2>
+  <h2 id="structs" style="margin-top:20px"><a href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/classesandstructures/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">Structs 🧱</a></h2>
 
   <div class="grid">
     <div class="card">
@@ -281,6 +282,29 @@ p.title = <span class="str">"Sunset"</span></pre>
 <span class="kw">case</span> .done:
     print(<span class="str">"done"</span>)
 }</pre>
+    </div>
+  </div>
+
+  <h2 id="classes" style="margin-top:20px"><a href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/classesandstructures/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">Classes 🏛️</a></h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3><span class="tag init">class</span> define</h3>
+      <p>A <b>reference type</b>. Needs an explicit <b>init</b> — no free memberwise initializer.</p>
+      <pre><span class="kw">class</span> <span class="ty">Photo</span> {
+    <span class="kw">let</span> name: <span class="ty">String</span>
+    <span class="kw">init</span>(name: <span class="ty">String</span>) {
+        <span class="kw">self</span>.name = name
+    }
+}</pre>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag var">instantiate</span> create an instance</h3>
+      <p>Instances are shared by <b>reference</b> — copies point to the <b>same object</b>.</p>
+      <pre><span class="kw">let</span> photo = <span class="ty">Photo</span>(name: <span class="str">"Sunset"</span>)
+<span class="kw">let</span> alias = photo
+alias.name</pre>
     </div>
   </div>
 
