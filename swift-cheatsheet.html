@@ -56,6 +56,13 @@
     margin:0 0 4px;
     display:flex;align-items:center;gap:8px;
   }
+  .info{
+    margin-left:auto;width:18px;height:18px;border-radius:50%;
+    border:2px solid currentColor;display:inline-flex;align-items:center;justify-content:center;
+    font:700 .7rem/1 'JetBrains Mono',monospace;font-style:italic;
+    color:inherit;text-decoration:none;opacity:.55;
+  }
+  .info:hover{opacity:1}
   .tag{
     font-family:'JetBrains Mono',monospace;
     font-size:.75rem;font-weight:700;
@@ -114,6 +121,7 @@
         <ul>
           <li><a href="#data-structures">Data Structures 🗂️</a></li>
           <li><a href="#unwrapping-optionals">Optional Binding 🎁</a></li>
+          <li><a href="#functions">Functions 🧮</a></li>
           <li><a href="#structs">Structs 🧱</a></li>
           <li><a href="#enums">Enums 🎛️</a></li>
           <li><a href="#classes">Classes 🏛️</a></li>
@@ -189,6 +197,35 @@ show(photo)</pre>
       <pre>name = optionalName ?? <span class="str">"Anonymous"</span>
 count = optionalPhoto?.tags.count
 photo = optionalPhoto!</pre>
+    </div>
+  </div>
+
+  <h2 id="functions" style="margin-top:20px"><a href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/functions/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">Functions 🧮</a></h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3><span class="tag init">func</span> define and call</h3>
+      <p>Parameters carry <b>labels</b> at the call site; <b>-&gt;</b> declares the return type.</p>
+      <pre><span class="kw">func</span> greet(name: <span class="ty">String</span>) -&gt; <span class="ty">String</span> {
+    <span class="kw">return</span> <span class="str">"Hello, \(name)"</span>
+}
+<span class="kw">let</span> msg = greet(name: <span class="str">"Liran"</span>)</pre>
+    </div>
+    <div class="card">
+      <h3><span class="tag sky2">implicit return</span> single expression <a class="info" href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/functions/#Functions-With-an-Implicit-Return" target="_blank" rel="noopener" title="Functions With an Implicit Return">i</a></h3>
+      <p>When the body is <b>one expression</b>, <b>return</b> is optional. Same for closures and computed properties.</p>
+      <pre><span class="kw">func</span> greet(name: <span class="ty">String</span>) -&gt; <span class="ty">String</span> {
+    <span class="str">"Hello, \(name)"</span>
+}
+<span class="kw">let</span> doubled = numbers.map { $0 * 2 }</pre>
+    </div>
+    <div class="card">
+      <h3><span class="tag var">explicit return</span> multiple statements</h3>
+      <p>Two or more statements in the body — <b>return</b> is required.</p>
+      <pre><span class="kw">func</span> greet(name: <span class="ty">String</span>) -&gt; <span class="ty">String</span> {
+    <span class="kw">let</span> trimmed = name.trimmingCharacters(in: .whitespaces)
+    <span class="kw">return</span> <span class="str">"Hello, \(trimmed)"</span>
+}</pre>
     </div>
   </div>
 
@@ -281,6 +318,19 @@ p.title = <span class="str">"Sunset"</span></pre>
     print(error)
 <span class="kw">case</span> .done:
     print(<span class="str">"done"</span>)
+}</pre>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag var">guard case</span> match one case or bail <a class="info" href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/patterns/#Enumeration-Case-Pattern" target="_blank" rel="noopener" title="Enumeration case pattern">i</a></h3>
+      <p>Pattern-match a <b>single case</b> without a full switch. The <b>else</b> must exit. Use <b>let</b> to pull out associated values.</p>
+      <pre><span class="kw">guard case</span> .idle = phase <span class="kw">else</span> { <span class="kw">return</span> }
+
+<span class="kw">guard case</span> .inProgress(<span class="kw">let</span> percent) = upload <span class="kw">else</span> { <span class="kw">return</span> }
+print(percent)
+
+<span class="kw">if case</span> .failed(<span class="kw">let</span> error) = upload {
+    print(error)
 }</pre>
     </div>
   </div>

@@ -15,6 +15,9 @@ The cheatsheet is a plain [HTML](./swift-cheatsheet.html)
 ## Table of contents
 Shows H1 and H2 titles.
 
+## Links 
+If we want to include links, it will always be using a same component of info button. (i with a circle around it)
+
 ## Sections
 The document will consist of many sections. Each section dedicated to a domain (e.g. Swift language, SwiftUI).
 
