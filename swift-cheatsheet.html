@@ -227,6 +227,14 @@ photo = optionalPhoto!</pre>
     <span class="kw">return</span> <span class="str">"Hello, \(trimmed)"</span>
 }</pre>
     </div>
+    <div class="card">
+      <h3><span class="tag sky2">$0 $1</span> shorthand arguments <a class="info" href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/closures/#Shorthand-Argument-Names" target="_blank" rel="noopener" title="Shorthand Argument Names">i</a></h3>
+      <p>Inside a closure, <b>$0</b>, <b>$1</b>, <b>$2</b>… refer to the arguments by position — no parameter list needed.</p>
+      <pre><span class="kw">let</span> names = people.map { $0.name }
+<span class="kw">let</span> sorted = numbers.sorted { $0 &gt; $1 }
+<span class="kw">let</span> total = numbers.reduce(0) { $0 + $1 }
+<span class="kw">let</span> total2 = numbers.reduce(0, +)</pre>
+    </div>
   </div>
 
   <h2 id="structs" style="margin-top:20px"><a href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/classesandstructures/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">Structs 🧱</a></h2>
