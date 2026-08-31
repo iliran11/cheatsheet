@@ -744,6 +744,14 @@ photoA == photoB</pre>
 debugPrint(p)
 String(reflecting: p)</pre>
     </div>
+
+    <div class="card">
+      <h3><span class="tag sun2">#if DEBUG_STORIES</span> debug stories <a class="info" href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/statements/#Conditional-Compilation-Block" target="_blank" rel="noopener" title="Conditional Compilation Block">i</a></h3>
+      <p>Includes story and preview code only when the <b>DEBUG_STORIES</b> compilation condition is enabled.</p>
+      <pre><span class="kw">#if</span> DEBUG_STORIES
+Storybook.registerAll()
+<span class="kw">#endif</span></pre>
+    </div>
   </div>
 </div>
 </body>
