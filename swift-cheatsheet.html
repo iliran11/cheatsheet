@@ -120,6 +120,7 @@
       <li><a href="#swift-language">Swift Language 🍎</a>
         <ul>
           <li><a href="#collection-types">Collection Types 🗂️</a></li>
+          <li><a href="#tuples">Tuples 🧷</a></li>
           <li><a href="#unwrapping-optionals">Optional Binding 🎁</a></li>
           <li><a href="#functions">Functions 🧮</a></li>
           <li><a href="#structs">Structs 🧱</a></li>
@@ -260,6 +261,34 @@ ages.count
 ages.keys.contains(<span class="str">"Ann"</span>)
 ages.mapValues { $0 + 1 }
 ages.filter { $0.value &gt; 26 }</pre>
+    </div>
+  </div>
+
+  <h2 id="tuples" style="margin-top:20px"><a href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/thebasics/#Tuples" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">Tuples 🧷</a></h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3><span class="tag init">Tuple</span> create and access</h3>
+      <p>Group fixed, possibly different <b>values</b>. Access by label or position.</p>
+      <pre><span class="kw">let</span> point = (x: 12, y: 8)
+point.x
+point.1
+
+<span class="kw">let</span> person = (<span class="str">"Ana"</span>, 30)
+person.0
+person.1</pre>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag init">Tuple</span> return multiple values</h3>
+      <p>Use a labeled tuple for a small, related return value.</p>
+      <pre><span class="kw">func</span> minMax(_ values: [<span class="ty">Int</span>]) -&gt; (min: <span class="ty">Int</span>, max: <span class="ty">Int</span>) {
+    (values.min()!, values.max()!)
+}
+
+<span class="kw">let</span> range = minMax([3, 1, 8])
+range.min
+range.max</pre>
     </div>
   </div>
 
