@@ -142,6 +142,7 @@
       <li><a href="#build-deploy">Build &amp; Deploy 🚀</a>
         <ul>
           <li><a href="#conditional-compilation">Conditional Compilation 🚦</a></li>
+          <li><a href="#debug-description">Debug Description 🔍</a></li>
         </ul>
       </li>
     </ul>
@@ -721,6 +722,27 @@ photoA == photoB</pre>
 <span class="kw">#else</span>
 <span class="kw">let</span> cameraAvailable = <span class="kw">true</span>
 <span class="kw">#endif</span></pre>
+    </div>
+  </div>
+
+  <h2 id="debug-description" style="margin-top:20px"><a href="https://developer.apple.com/documentation/swift/customdebugstringconvertible#Conforming-to-the-CustomDebugStringConvertible-Protocol" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">Debug Description 🔍</a></h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3><span class="tag init">CustomDebugStringConvertible</span> readable debug output <a class="info" href="https://developer.apple.com/documentation/swift/customdebugstringconvertible#Conforming-to-the-CustomDebugStringConvertible-Protocol" target="_blank" rel="noopener" title="Conforming to the CustomDebugStringConvertible Protocol">i</a></h3>
+      <p>Controls what <b>debugPrint</b>, <b>String(reflecting:)</b> and the Xcode debugger show for your type.</p>
+      <pre><span class="kw">struct</span> Point: CustomDebugStringConvertible {
+    <span class="kw">let</span> x: Int
+    <span class="kw">let</span> y: Int
+
+    <span class="kw">var</span> debugDescription: String {
+        <span class="str">"Point(x: \(x), y: \(y))"</span>
+    }
+}
+
+<span class="kw">let</span> p = Point(x: 21, y: 30)
+debugPrint(p)
+String(reflecting: p)</pre>
     </div>
   </div>
 </div>
