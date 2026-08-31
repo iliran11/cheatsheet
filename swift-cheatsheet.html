@@ -139,6 +139,12 @@
           <li><a href="#image">Image 🌄</a></li>
         </ul>
       </li>
+      <li><a href="#apple-vision">Apple Vision 👁️</a>
+        <ul>
+          <li><a href="#detect-face-rectangles-request">DetectFaceRectanglesRequest 🙂</a></li>
+          <li><a href="#image-aesthetics">Image Aesthetics ✨</a></li>
+        </ul>
+      </li>
       <li><a href="#build-deploy">Build &amp; Deploy 🚀</a>
         <ul>
           <li><a href="#conditional-compilation">Conditional Compilation 🚦</a></li>
@@ -696,6 +702,44 @@ photoA == photoB</pre>
     .scaledToFill()
     .frame(width: 80, height: 80)
     .clipped()</pre>
+    </div>
+  </div>
+
+  <h1 id="apple-vision" style="margin-top:20px">Apple Vision 👁️</h1>
+
+  <h2 id="detect-face-rectangles-request"><a href="https://developer.apple.com/documentation/vision/detectfacerectanglesrequest" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">DetectFaceRectanglesRequest 🙂</a></h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3><span class="tag init">DetectFaceRectanglesRequest</span> detect faces <a class="info" href="https://developer.apple.com/documentation/vision/detectfacerectanglesrequest" target="_blank" rel="noopener" title="DetectFaceRectanglesRequest">i</a></h3>
+      <p>Use a UIImage’s <b>cgImage</b> property as input. Returns <b>[FaceObservation]</b>.</p>
+      <pre><span class="kw">import</span> Vision
+
+<span class="kw">let</span> image: CGImage = uiImage.cgImage!
+<span class="kw">let</span> request = DetectFaceRectanglesRequest()
+<span class="kw">let</span> faces: [FaceObservation] = <span class="kw">try</span> <span class="kw">await</span> request.perform(on: image)</pre>
+    </div>
+
+    <div class="card">
+      <h3><span class="tag var">supportedRevisions</span> choose a revision <a class="info" href="https://developer.apple.com/documentation/vision/detectfacerectanglesrequest/revision-swift.enum" target="_blank" rel="noopener" title="DetectFaceRectanglesRequest Revision">i</a></h3>
+      <p>Use the latest revision available on the current platform.</p>
+      <pre><span class="kw">let</span> revision = DetectFaceRectanglesRequest.supportedRevisions.last
+<span class="kw">let</span> request = DetectFaceRectanglesRequest(revision)</pre>
+    </div>
+  </div>
+
+  <h2 id="image-aesthetics" style="margin-top:20px"><a href="https://developer.apple.com/documentation/vision/calculateimageaestheticsscoresrequest" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">Image Aesthetics ✨</a></h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3><span class="tag sun2">isUtility</span> identify utility images <a class="info" href="https://developer.apple.com/documentation/vision/imageaestheticsscoresobservation/isutility" target="_blank" rel="noopener" title="ImageAestheticsScoresObservation isUtility">i</a></h3>
+      <p>Flags images that may be good quality but lack memorable or exciting content.</p>
+      <pre><span class="kw">let</span> request = CalculateImageAestheticsScoresRequest()
+<span class="kw">let</span> score = <span class="kw">try</span> <span class="kw">await</span> request.perform(on: image)
+
+<span class="kw">if</span> score.isUtility {
+    print(<span class="str">"Utility image"</span>)
+}</pre>
     </div>
   </div>
 
