@@ -143,6 +143,7 @@
       <li><a href="#apple-vision">Apple Vision 👁️</a>
         <ul>
           <li><a href="#detect-face-rectangles-request">DetectFaceRectanglesRequest 🙂</a></li>
+          <li><a href="#vision-errors">Vision Errors ⚠️</a></li>
           <li><a href="#image-aesthetics">Image Aesthetics ✨</a></li>
         </ul>
       </li>
@@ -754,6 +755,26 @@ photoA == photoB</pre>
       <p>Use the latest revision available on the current platform.</p>
       <pre><span class="kw">let</span> revision = DetectFaceRectanglesRequest.supportedRevisions.last
 <span class="kw">let</span> request = DetectFaceRectanglesRequest(revision)</pre>
+    </div>
+  </div>
+
+  <h2 id="vision-errors" style="margin-top:20px"><a href="https://developer.apple.com/documentation/vision/vnerrorcode" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">Vision Errors ⚠️</a></h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3><span class="tag sun2">VNErrorCode</span> handle unavailable data <a class="info" href="https://developer.apple.com/documentation/vision/vnerrorcode" target="_blank" rel="noopener" title="VNErrorCode">i</a><a class="info" href="https://developer.apple.com/documentation/vision/vnerrorcode/dataunavailable" target="_blank" rel="noopener" title="VNErrorCode dataUnavailable">i</a></h3>
+      <p>Switch on the caught error and handle <b>dataUnavailable</b> with a recovery message.</p>
+      <pre><span class="kw">do</span> {
+    <span class="kw">let</span> faces: [FaceObservation] = <span class="kw">try</span> <span class="kw">await</span> request.perform(on: image)
+    print(faces.count)
+} <span class="kw">catch</span> {
+    <span class="kw">switch</span> (error <span class="kw">as</span> NSError).code {
+    <span class="kw">case</span> VNErrorCode.dataUnavailable.rawValue:
+        print(<span class="str">"Vision data is unavailable."</span>)
+    <span class="kw">default</span>:
+        print(<span class="str">"Face detection failed."</span>)
+    }
+}</pre>
     </div>
   </div>
 
